@@ -16,7 +16,10 @@
     pkgs.buildNpmPackage {
       pname = "tartan-cli";
       version = version;
-      src = builtins.fetchGit ./.;
+      src = builtins.fetchGit {
+        url = ./.;
+        shallow = true; # required to work in a github actions runner
+      };
       npmDepsHash = dependencyHash;
       nodejs = pkgs."nodejs_${nodeVersion}";
       doCheck = true;
