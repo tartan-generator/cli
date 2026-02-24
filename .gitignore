@@ -1,0 +1,7 @@
+node_modules
+dist
+result
+result-*
+.tmp
+.staging
+default.nix.backup

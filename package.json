@@ -1,0 +1,56 @@
+{
+    "name": "@tartan/cli",
+    "version": "0.6.0",
+    "description": "CLI for the Tartan static site generator",
+    "homepage": "https://github.com/tartan-generator/cli.git#readme",
+    "bugs": {
+        "url": "https://github.com/tartan-generator/cli.git"
+    },
+    "license": "AGPL-3.0-or-later",
+    "author": {
+        "name": "Juniper Jorgensen",
+        "email": "juniper@leprechaun.dev",
+        "url": "https://github.com/junipertheleprechaun/"
+    },
+    "files": [
+        "dist"
+    ],
+    "exports": {
+        ".": "dist/exports.js"
+    },
+    "type": "module",
+    "bin": {
+        "tartan": "dist/bin.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/tartan-generator/cli.git"
+    },
+    "scripts": {
+        "build": "node ./build.js && chmod +x ./dist/bin.js",
+        "test": "vitest run",
+        "test:watch": "vitest watch",
+        "start": "node ./build.js && chmod +x ./dist/bin.js && ./dist/bin.js"
+    },
+    "dependencies": {
+        "@tartan/core": "^0.8.0",
+        "@types/yargs": "^17.0.35",
+        "winston": "^3.19.0",
+        "yargs": "^18.0.0"
+    },
+    "devDependencies": {
+        "@types/node": "^25.2.2",
+        "@vitest/ui": "^4.0.18",
+        "typescript": "^5.7.2",
+        "vitest": "^4.0.18"
+    },
+    "engines": {
+        "node": "20.x || 22.x || 24.x"
+    },
+    "os": [
+        "linux"
+    ],
+    "publishConfig": {
+        "access": "public"
+    }
+}
