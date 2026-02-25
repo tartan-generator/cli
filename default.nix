@@ -9,7 +9,7 @@
     },
 }: let
   version = (builtins.fromJSON (builtins.readFile ./package.json)).version;
-  dependencyHash = "sha256-7jrGdBbH6705J/Bo4ObReHEVGsYJrnp95jIDmIq4Xv8=";
+  dependencyHash = "sha256-hQ0D1n0sj8cd5VguuEMT0S31LFiCZzLChmvTvuekvrM=";
   nodeVersions = ["20" "22" "24"]; # maintained LTS versions
   latestNodeVersion = "nodejs_${pkgs.lib.last nodeVersions}";
   buildOnVersion = nodeVersion:

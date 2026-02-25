@@ -1,13 +1,5 @@
 import { defineConfig } from "vitest/config";
-import { exec as exec_cp } from "node:child_process";
-import { readFile } from "node:fs/promises";
-import { promisify } from "node:util";
-
-const exec = promisify(exec_cp);
-
-const packageVersion = await readFile("./package.json").then(
-    (file) => JSON.parse(file.toString()).version,
-);
+import { getVersion } from "./build/util";
 
 export default defineConfig({
     test: {
@@ -15,6 +7,6 @@ export default defineConfig({
         include: ["tests/**/*.test.ts"],
     },
     define: {
-        PACKAGE_VERSION: `"${packageVersion}"`,
+        PACKAGE_VERSION: `"${await getVersion()}"`,
     },
 });

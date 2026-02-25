@@ -27,10 +27,10 @@
         "url": "git+https://github.com/tartan-generator/cli.git"
     },
     "scripts": {
-        "build": "node ./build.js && chmod +x ./dist/bin.js",
+        "build": "node ./build/index.js && chmod +x ./dist/bin.js",
         "test": "vitest run",
         "test:watch": "vitest watch",
-        "start": "node ./build.js && chmod +x ./dist/bin.js && ./dist/bin.js"
+        "start": "node ./build/index.js && chmod +x ./dist/bin.js && ./dist/bin.js"
     },
     "dependencies": {
         "@tartan/core": "^0.8.0",

@@ -1,16 +1,15 @@
 import * as esbuild from "esbuild";
 import { exec as exec_cp } from "node:child_process";
-import { mkdir, readFile, rm } from "node:fs/promises";
+import { mkdir, rm } from "node:fs/promises";
 import { promisify } from "node:util";
+import { getVersion } from "./util.js";
+
+const cliVersion = await getVersion();
 
 const exec = promisify(exec_cp);
 
 await rm("dist", { recursive: true, force: true });
 await mkdir("dist");
-
-const packageVersion = await readFile("./package.json").then(
-    (file) => JSON.parse(file.toString()).version,
-);
 
 await esbuild.build({
     entryPoints: ["./src/bin.ts", "./src/exports.ts"],
@@ -22,7 +21,7 @@ await esbuild.build({
     outdir: "dist",
     packages: "external",
     define: {
-        PACKAGE_VERSION: `"${packageVersion}"`,
+        PACKAGE_VERSION: `"${cliVersion}"`,
     },
 });
 
