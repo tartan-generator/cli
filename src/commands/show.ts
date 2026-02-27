@@ -13,7 +13,7 @@ import {
 } from "@tartan/core";
 import { createLogger } from "winston";
 import { renderTree } from "../util/tree.js";
-import path from "node:path";
+import path, { basename } from "node:path";
 
 export default <TestableCommandModule<{}, TartanArgs>>{
     command: "show",
@@ -36,7 +36,9 @@ export default <TestableCommandModule<{}, TartanArgs>>{
 
             const rendered: string = renderTree(node, (val, parent) => ({
                 value: `${parent ? path.relative(parent.path, val.path) : path.relative(".", config.sourceDirectory)} (${val.type})`,
-                children: val.children,
+                children: val.children.toSorted((a, b) =>
+                    basename(a.path) > basename(b.path) ? 1 : -1,
+                ),
             }));
 
             stdout.write(rendered);
