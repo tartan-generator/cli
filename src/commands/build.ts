@@ -19,7 +19,7 @@ import {
 } from "@tartan/core";
 import { createLogger } from "winston";
 
-const module: TestableCommandModule<{}, TartanArgs> = {
+export default <TestableCommandModule<{}, TartanArgs>>{
     command: "build",
     describe: "Build a tartan project",
     handler: async (args, output) => {
@@ -53,5 +53,3 @@ const module: TestableCommandModule<{}, TartanArgs> = {
         }
     },
 };
-
-export default module;
