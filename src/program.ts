@@ -49,6 +49,5 @@ export function createTartan() {
             .alias("help", "h")
             .strict()
             .completion()
-            .fail((msg, err, yargs) => {}) // without this it shows the help menu for some reason
     );
 }

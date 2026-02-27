@@ -1,4 +1,5 @@
 import { Writable } from "node:stream";
+import { inspect } from "node:util";
 import { createLogger, format, Logger, transports } from "winston";
 import { CommandModule } from "yargs";
 
@@ -20,6 +21,10 @@ export type TestableCommandModule<T = {}, U = {}> = Omit<
         ]
     ) => ReturnType<CommandModule<T, U>["handler"]>;
 };
+
+export function formatError(err: Error): string {
+    return inspect(err, { colors: true }).replace(/^Error: /, "");
+}
 
 export function useOutput(output: TestableOutput | undefined): TestableOutput {
     return (
