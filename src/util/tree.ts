@@ -3,14 +3,22 @@ export type FormattableNode = {
     children: FormattableNode[];
 };
 
-export function renderTree(node: FormattableNode): string {
-    return getStringsForNode(node).join("\n");
+export function renderTree<T>(
+    node: T,
+    transform: (node: T, parent?: T) => { value: string; children: T[] },
+): string {
+    return getStringsForNode<T>(node, transform).join("\n");
 }
 
-function getStringsForNode(node: FormattableNode): string[] {
-    const values: string[] = [node.value];
-    const children: string[][] = node.children.map((child) =>
-        getStringsForNode(child),
+function getStringsForNode<T>(
+    node: T,
+    transform: (node: T, parent?: T) => { value: string; children: T[] },
+    parent?: T,
+): string[] {
+    const transformed = transform(node, parent);
+    const values: string[] = [transformed.value];
+    const children: string[][] = transformed.children.map((child) =>
+        getStringsForNode(child, transform, node),
     );
 
     children.forEach((child, i) => {
