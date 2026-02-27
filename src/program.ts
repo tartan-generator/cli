@@ -1,5 +1,6 @@
 import yargs from "yargs";
 import build from "./commands/build.js";
+import show from "./commands/show.js";
 
 declare const PACKAGE_VERSION: string;
 
@@ -40,6 +41,7 @@ export function createTartan() {
 
             // commands
             .command(build)
+            .command(show)
             .demandCommand()
 
             // extra
