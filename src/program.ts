@@ -50,6 +50,5 @@ export function createTartan(version?: string) {
             .help()
             .alias("help", "h")
             .strict()
-            .completion()
     );
 }
