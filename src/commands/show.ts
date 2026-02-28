@@ -35,12 +35,15 @@ export default <TestableCommandModule<{}, TartanArgs>>{
             });
 
             const rendered: string = renderTree(node, (val, parent) => ({
-                value: `${parent ? path.relative(parent.path, val.path) : path.relative(".", config.sourceDirectory)} (${val.type})`,
+                value: `${parent ? path.relative(parent.path, val.path) : "[root]"} (${val.type})`,
                 children: val.children.toSorted((a, b) =>
                     basename(a.path) > basename(b.path) ? 1 : -1,
                 ),
             }));
 
+            stdout.write(
+                `Showing context tree at [${path.normalize(path.relative(".", config.sourceDirectory))}]:\n\n`,
+            );
             stdout.write(rendered);
             stdout.write("\n");
         } catch (err: any) {

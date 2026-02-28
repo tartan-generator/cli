@@ -32,7 +32,10 @@ describe("the show command", () => {
                 TartanContextFile
             >{ pageMode: "handoff" }),
         });
-        const expected: string = `${path.join(path.relative(".", tmpDir), "src")} (page)
+        const expected: string = `
+Showing context tree at [${path.relative("", path.join(tmpDir, "src"))}]:
+
+[root] (page)
 ├──assets (page)
 │   ├──asset-a (asset)
 │   ├──asset-b (asset)
@@ -40,7 +43,7 @@ describe("the show command", () => {
 │       └──asset (asset)
 ├──handoff (handoff)
 └──sub-page (page)
-`;
+`.slice(1); // trim leading newline
         mockConfig({
             sourceDirectory: path.join(tmpDir, "src"),
             outputDirectory: path.join(tmpDir, "dist"),
