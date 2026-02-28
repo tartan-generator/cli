@@ -36,6 +36,7 @@ in {
     packages = with pkgs; [
       pkgs."${latestNodeVersion}"
       npins
+      tsx
       (pkgs.writeShellScriptBin "tartan" ''
         DEV_BUILD=1 exec ${pkgs."${latestNodeVersion}"}/bin/npm start -s -- "$@"
       '')
