@@ -11,7 +11,7 @@ export type TartanArgs = {
     rootContext?: string;
 };
 
-export function createTartan() {
+export function createTartan(version?: string) {
     return (
         yargs()
             // setup
@@ -45,7 +45,7 @@ export function createTartan() {
             .demandCommand()
 
             // extra
-            .version(`CLI v${PACKAGE_VERSION}`)
+            .version(`CLI v${version ?? PACKAGE_VERSION}`)
             .alias("version", "V")
             .help()
             .alias("help", "h")
