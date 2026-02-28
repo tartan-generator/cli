@@ -3,13 +3,7 @@ import path from "path";
 import { beforeAll } from "vitest";
 
 beforeAll(async () => {
-    const exists: boolean = await fs
-        .access(".tmp")
-        .then(() => true)
-        .catch(() => false);
-    if (!exists) {
-        await fs.mkdir(".tmp");
-    }
+    await fs.mkdir(".tmp", { recursive: true });
 });
 
 export async function makeTempFiles(files: {
